@@ -1,0 +1,36 @@
+cmpl() {
+    clear
+    echo "----------COMPILING PROGRAM----------"
+    
+    c_file=$(ls *.c 2>/dev/null)
+    
+    if [ -z "$c_file" ]; then
+        echo "----------C FILE NOT FOUND----------"
+        return 1
+    fi
+    
+    for file in $c_file; do
+        if [[ "$file" == *_gcc.c ]]; then
+            continue
+        fi
+        
+        base_name=$(basename "$file" .c)
+        
+        echo "Compiling file: $file"
+        
+        make clean
+        make
+        
+        if [ $? -ne 0 ]; then
+            echo "----------ERROR DURING COMPILATION----------"
+            return 1
+        else
+	    echo "----------PROGRAM COMPILED----------"
+	    bin_file="gcc/${base_name}.bin"
+		
+	    echo "----------UPLOADING PROGRAM----------"
+	    sudo lm4flash "$bin_file"
+	    echo "----------PROGRAM UPLOADED----------"
+        fi
+    done
+}
