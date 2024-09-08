@@ -16,3 +16,8 @@ done with #. Once done, pres Ctrl+s to save ang close the window, then type this
 source ~/.bashrc
 
 To activate the alias type cmpl on terminal.
+
+#----------Git contains----------
+1. Blinky file.
+2. .bashrc code.
+3. Code with bugs.
