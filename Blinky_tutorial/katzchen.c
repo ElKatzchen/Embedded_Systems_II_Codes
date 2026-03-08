@@ -11,12 +11,12 @@
 
 void Delay(uint32_t);
 
-uint32_t FS=120000000;
+uint32_t FS = 120000000;
 
 int main(void)
 {
 	/*----------CLOCK DECLARATION----------*/
-	SysCtlClockFreqSet((SYSCTL_XTAL_25MHZ | SYSCTL_OSC_MAIN | SYSCTL_USE_PLL | SYSCTL_CFG_VCO_480), 120000000);
+	SysCtlClockFreqSet((SYSCTL_XTAL_25MHZ | SYSCTL_OSC_MAIN | SYSCTL_USE_PLL | SYSCTL_CFG_VCO_480), FS);
 	
 	/*----------GPIO CLOCK ACTIVATION----------*/    
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPION);
@@ -56,23 +56,19 @@ void Delay(uint32_t time){
 }
 
 
-
 //   Pin     7 6 5 4 || 3 2 1 0
 //  Binary   1 0 1 0 || 0 0 1 1
 //    0x        A    ||    3
+//                  0xA3
 
 //   Pin     7 6 5 4 || 3 2 1 0
-//  Binary   1 1 1 1 || 1 0 0 1
-//    0x        F    ||    9
+//  Binary   0 1 0 0 || 1 0 1 0
+//    0x        4    ||    A
 
 //   Pin     7 6 5 4 || 3 2 1 0
-//  Binary   1 1 1 0 || 1 1 0 1
-//    0x        E    ||    D
+//  Binary   1 1 1 0 || 0 1 0 1
+//    0x        E    ||    5
 
 //   Pin     7 6 5 4 || 3 2 1 0
-//  Binary   0 1 1 0 || 1 0 1 0
-//    0x        6    ||    A
-
-//   Pin     7 6 5 4 || 3 2 1 0
-//  Binary   1 0 1 1 || 0 1 0 0
-//    0x        B    ||    4
+//  Binary   1 1 0 0 || 1 1 0 0
+//    0x        C    ||    C
